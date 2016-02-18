@@ -45,8 +45,6 @@ class OAuthListener
 			else{
 				if( $session->get('open_id') === null 
 					&& $request->attributes->get('_route') !== '_callback'
-					&& $request->attributes->get('_route') !== '_index'
-					&& $request->attributes->get('_route') !== '_update'
 				){
 					$app_id = $this->container->getParameter('wechat_appid');
 					$session->set('redirect_url', $request->getUri());
