@@ -1,0 +1,94 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+{% block content %}
+<div class="pageOuter">
+    <div class="innerDiv">
+        <div class="page page0">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="bg1 abs bgImg"></div>
+                    <div class="bg2 abs bgImg" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="page page1" style="display:none;">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="page1Img1 abs bgImg"></div>
+                    <p class="coolDownTime">
+                        距离下次抢hong bao<br>
+                        <span>还有<font class="ch">0</font>时<font class="cm">0</font>分<font class="cs">0</font>秒</span>
+                    </p>
+                    <a href="javascript:void(0);" class="btn1 abs" onClick="showRule();"><img src="{{ asset('bundles/app/default/') }}images/btn1.png"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page page2" style="display:none;">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="page2Img1 abs bgImg"></div>
+                    <img src="{{ asset('bundles/app/default/') }}images/page2Img2.png" class="abs page2Img2">
+                    <div class="page3Img1 abs bgImg" style="top:-754px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page page4" style="display:none;">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="page4Img1 abs bgImg"></div>
+                    <img src="{{ asset('bundles/app/default/') }}images/page4Img5.png" class="abs page4Img5a">
+                    <img src="{{ asset('bundles/app/default/') }}images/page4Img5.png" class="abs page4Img5b">
+                    <div class="getRedLine">
+                        <span>10.99</span><img src="{{ asset('bundles/app/default/') }}images/page4Img2.png">
+                    </div>
+                    <div class="chanceLine">
+                        <img src="{{ asset('bundles/app/default/') }}images/page4Img3.png"><span>5</span><img src="{{ asset('bundles/app/default/') }}images/page4Img4.png">
+                    </div>
+                    <a href="http://cib.e-pointchina.com.cn/activity_cibnzdc/wx_servlet/cibnzdc" class="page4Btn1 abs"><img src="{{ asset('bundles/app/default/') }}images/page4Btn1.png"></a>
+                    <a href="javascript:void(0);" class="page4Btn2 abs" onClick="playAgain();"><img src="{{ asset('bundles/app/default/') }}images/page4Btn2.png"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page page5" style="display:none;">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="page5Img1 abs bgImg"></div>
+                    <a href="http://cib.e-pointchina.com.cn/activity_cibnzdc/wx_servlet/cibnzdc" class="page5Btn1 abs"><img src="{{ asset('bundles/app/default/') }}images/page5Btn1.png"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page page6" style="display:none;">
+            <div class="h832">
+                <div class="innerDiv">
+                    <div class="page4Img1 abs bgImg"></div>
+                    <img src="{{ asset('bundles/app/default/') }}images/page4Img5.png" class="abs page4Img5a">
+                    <img src="{{ asset('bundles/app/default/') }}images/page4Img5.png" class="abs page4Img5b">
+                    <div class="getRedLine">
+                        <span>10.99</span><img src="{{ asset('bundles/app/default/') }}images/page4Img2.png">
+                    </div>
+                    <div class="chanceLine">
+                        <img src="{{ asset('bundles/app/default/') }}images/page4Img6.png">
+                    </div>
+                    <a href="http://cib.e-pointchina.com.cn/activity_cibnzdc/wx_servlet/cibnzdc" class="page4Btn1 abs"><img src="{{ asset('bundles/app/default/') }}images/page4Btn1.png"></a>
+                    <a href="javascript:void(0);" class="page4Btn2 abs" onClick="showShare();"><img src="{{ asset('bundles/app/default/') }}images/page4Btn3.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popBg" onClick="closePop();" style="display:none;"></div>
+<img src="{{ asset('bundles/app/default/') }}images/shareImg.png" class="shareImg" onClick="closePop();" style="display:none;">
+
+
+<div class="popBg2" onClick="closePop();" style="display:none;"></div>
+<div class="rule" style="display:none;">
+    <div class="innerDiv">
+        <a href="javascript:void(0);" class="abs btn2" onClick="closePop();"><img src="{{ asset('bundles/app/default/') }}images/btn2.png"></a>
+    </div>
+</div>
+{% endblock %}
