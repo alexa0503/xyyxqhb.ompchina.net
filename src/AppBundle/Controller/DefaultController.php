@@ -151,6 +151,7 @@ class DefaultController extends Controller
 					$result = array(
 						'ret' => 0,
 						'drawNum'=>5-$num1-1,
+						'credit'=>$credit,
 						'msg' => ''
 					);
 				}
