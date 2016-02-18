@@ -141,7 +141,8 @@ function yaoGet(){
 	isYaoGet=true;
 	$('.page3Img1').stop().animate({top:-104},100,'linear').css('background-position','-640px 0');
 	setTimeout(function(){
-		$.get('/lottery',function(json){
+		$.getJSON('/lottery',function(json){
+			alert(json.ret);
 			if(json.ret == 0){
 				if( json.drawNum == 0){
 					goPage6(json.credit);
@@ -153,7 +154,7 @@ function yaoGet(){
 			else {
 				goPage5();
 			}
-		},"JSON");
+		});
 		//goPage4();//中奖显示浮层 还有机会
 		//goPage5();//未中奖显示浮层
 		//goPage6();//中奖显示浮层 没有机会
