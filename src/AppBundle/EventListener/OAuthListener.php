@@ -58,8 +58,8 @@ class OAuthListener
 				}
 			}
 			$session->set('shareAppid',$this->container->getParameter('wechat_appid'));
-			$session->set('shareTitle','好时新意，分享甜蜜');
-			$session->set('shareDesc','你有一个来自好时的现金红包未领取');
+			$session->set('shareTitle','兴业银行');
+			$session->set('shareDesc','兴业银行');
 			$session->set('shareLink',$request->getUriForPath('/'));
 			$session->set('shareImg','http://'.$request->getHost().'/bundles/app/default/images/share.jpg');
 		}

@@ -20,6 +20,22 @@ use Imagine\Image\ImageInterface;
 
 class DefaultController extends Controller
 {
+	protected $config = array(
+			array('01:00','23:10',400000,150000),
+			array('11:00','11:05',100000,150000),
+			array('12:00','12:05',200000,150000),
+			array('13:00','13:05',100000,150000),
+			array('14:00','14:05',100000,150000),
+			array('15:00','15:05',100000,150000),
+			array('16:00','16:05',100000,150000),
+			array('17:00','17:05',100000,150000),
+			array('18:00','18:05',100000,150000),
+			array('19:00','19:05',150000,150000),
+			array('20:00','20:05',150000,150000),
+			array('21:00','21:05',150000,150000),
+			array('22:00','22:05',150000,150000),
+		);
+	protected $date_time = array('2016-02-18 00:00:00','2016-02-22 23:59:59');
 	public function getUser()
 	{
 		$session = $this->get('session');
@@ -36,6 +52,8 @@ class DefaultController extends Controller
 	 */
 	public function indexAction(Request $request)
 	{
+		$date_time = $this->date_time;
+		$config = $this->config;
 		return $this->render('AppBundle:default:index.html.twig');
 	}
 	/**
@@ -44,22 +62,8 @@ class DefaultController extends Controller
 	public function lotteryAction(Request $request)
 	{
 
-		$date_time = array('2016-02-18 00:00:00','2016-02-22 23:59:59');
-		$config = array(
-			array('10:00','10:10',400000,150000),
-			array('11:00','11:05',100000,150000),
-			array('12:00','12:05',200000,150000),
-			array('13:00','13:05',100000,150000),
-			array('14:00','14:05',100000,150000),
-			array('15:00','15:05',100000,150000),
-			array('16:00','16:05',100000,150000),
-			array('17:00','17:05',100000,150000),
-			array('18:00','18:05',100000,150000),
-			array('19:00','19:05',150000,150000),
-			array('20:00','20:05',150000,150000),
-			array('21:00','21:05',150000,150000),
-			array('22:00','22:05',150000,150000),
-		);
+		$date_time = $this->date_time;
+		$config = $this->config;
 		$timestamp = time();
 		$i = null;
 		foreach ($config as $key => $value) {
@@ -81,7 +85,7 @@ class DefaultController extends Controller
 				'msg' => '活动已结束'
 			);
 		}
-		elseif (null == $i) {
+		elseif (null === $i) {
 			$result = array(
 				'ret' => 2003,
 				'msg' => '活动还没有开始喔'
@@ -154,6 +158,7 @@ class DefaultController extends Controller
 						'credit'=>$credit,
 						'msg' => ''
 					);
+					//请求接口
 				}
 				$em->getConnection()->commit();
 			}
