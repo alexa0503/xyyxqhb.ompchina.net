@@ -38,9 +38,9 @@ ga('send', 'pageview');
 </script>
 
 <script>
-var EndTime=new Date('2016/2/18 14:30:00');
-var isGaming=false;
-var isEnd=false;
+var EndTime=new Date('{{ EndTime }}');
+var isGaming={% if isGaming == true %}true{% else %}false{% endif %};
+var isEnd={% if isEnd == true %}true{% else %}false{% endif %};
 </script>
 {% endblock %}
 </head>

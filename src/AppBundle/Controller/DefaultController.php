@@ -55,14 +55,24 @@ class DefaultController extends Controller
 		$date_time = $this->date_time;
 		$config = $this->config;
 		$timestamp = time();
+		$i = null;
 		foreach ($config as $key => $value) {
 			if(strtotime(date('Y-m-d ').$value[0]) <= $timestamp && strtotime(date('Y-m-d ').$value[1]) > $timestamp){
 				$i = $key;
 				break;
 			}
 		}
-		$end_time = date('Y-m-d ').$config[$i][1];
-		return $this->render('AppBundle:default:index.html.twig');
+		if( null !== $i)
+			$end_time = date('Y-m-d ').$config[$i][0];
+		else
+			$end_time = '2016-02-18';
+		$is_gaming = $i === null ? false : true;
+		$is_end = strtotime($date_time[1]) < $timestamp ? false : true;
+		return $this->render('AppBundle:default:index.html.twig', array(
+			'EndTime'=>$end_time,
+			'isGaming'=> $is_gaming,
+			'isEnd' => $is_end,
+		));
 	}
 	/**
 	 * @Route("/lottery", name="_lottery")

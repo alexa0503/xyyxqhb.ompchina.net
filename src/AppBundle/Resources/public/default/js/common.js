@@ -145,7 +145,6 @@ function yaoGet(){
 	if( hasRequest == false ){
 		hasRequest = true;
 		setTimeout(function(){
-
 			$.getJSON('/lottery',function(json){
 				if(json.ret == 0){
 					if( json.drawNum == 0){
