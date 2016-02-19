@@ -35,7 +35,7 @@ class DefaultController extends Controller
 			array('21:00','21:05',150000,150000),
 			array('22:00','22:05',150000,150000),
 		);
-	protected $date_time = array('2016-02-18 00:00:00','2016-02-22 23:59:59');
+	protected $date_time = array('2016-02-18 00:00:00','2016-02-23 23:59:59');
 	public function getUser()
 	{
 		$session = $this->get('session');
@@ -66,8 +66,8 @@ class DefaultController extends Controller
 			$end_time = date('Y/m/d ').$config[$i][0];
 		else
 			$end_time = '2016/02/18';
-		$is_gaming = $i === null ? false : true;
 		$is_end = strtotime($date_time[1]) < $timestamp ? true : false;
+		$is_gaming = $i !== null && is_end != true ? true : false;
 		return $this->render('AppBundle:default:index.html.twig', array(
 			'EndTime'=>$end_time,
 			'isGaming'=> $is_gaming,
