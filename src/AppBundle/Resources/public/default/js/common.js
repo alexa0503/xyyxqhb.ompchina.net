@@ -27,6 +27,7 @@ $(document).ready(function(){
 	
 	if(isGaming){
 		$('.page2').show();
+		gameStart();
 	}
 	else{
 		if(isEnd){
