@@ -17,11 +17,12 @@ use Imagine\Image\Box;
 use Imagine\Image\Point;
 use Imagine\Image\ImageInterface;
 #use Symfony\Component\Validator\Constraints\Image;
+use AppBundle\Cib;
 
 class DefaultController extends Controller
 {
 	protected $config = array(
-			array('01:00','23:10',400000,150000),
+			array('10:00','10:10',400000,150000),
 			array('11:00','11:05',100000,150000),
 			array('12:00','12:05',200000,150000),
 			array('13:00','13:05',100000,150000),
@@ -52,22 +53,31 @@ class DefaultController extends Controller
 	 */
 	public function indexAction(Request $request)
 	{
+		//$result = new Cib\Cib(array('credit'=>10,'openId'=>'1'));
+		//var_dump($result);
 		$date_time = $this->date_time;
 		$config = $this->config;
 		$timestamp = time();
-		$i = null;
+		$i = 0;
 		foreach ($config as $key => $value) {
-			if(strtotime(date('Y-m-d ').$value[0]) <= $timestamp && strtotime(date('Y-m-d ').$value[1]) > $timestamp){
-				$i = $key;
+			if(isset($config[$key+1]) && strtotime(date('Y-m-d ').$value[1]) < $timestamp && strtotime(date('Y-m-d ').$config[$key+1][0]) > $timestamp){
+				$i = $key+1;
 				break;
 			}
 		}
-		if( null !== $i)
-			$end_time = date('Y/m/d ').$config[$i][0];
-		else
-			$end_time = '2016/02/18';
+		$end_time = date('Y/m/d ').$config[$i][0];
+
+		$n = null;
+		foreach ($config as $key => $value) {
+			if(strtotime(date('Y-m-d ').$value[0]) <= $timestamp && strtotime(date('Y-m-d ').$value[1]) > $timestamp){
+				$n = $key;
+				break;
+			}
+		}
+
+
 		$is_end = strtotime($date_time[1]) < $timestamp ? true : false;
-		$is_gaming = $i !== null && $is_end != true ? true : false;
+		$is_gaming = $n !== null && $is_end != true ? true : false;
 		return $this->render('AppBundle:default:index.html.twig', array(
 			'EndTime'=>$end_time,
 			'isGaming'=> $is_gaming,
@@ -79,7 +89,7 @@ class DefaultController extends Controller
 	 */
 	public function lotteryAction(Request $request)
 	{
-
+		$session = $request->getSession();
 		$date_time = $this->date_time;
 		$config = $this->config;
 		$timestamp = time();
@@ -177,6 +187,22 @@ class DefaultController extends Controller
 						'msg' => ''
 					);
 					//请求接口
+					$data1 = array(
+						'msgtype'=>'request_msg',
+						'format'=>'xml',
+						'organizerId'=>'omp',
+						'version'=>'1.0',
+						'timestamp'=>time(),
+						'method'=>'10',
+						'message'=>'',
+						'serviceType'=>'com.epointchina.activity.appcibnzdc.service.CIBNZDCServiceForThirdPty',
+						'serviceMethod'=>'doThirdPtyOperator',
+					);
+					$data2 = array(
+						'amount'=>$credit,
+						'channel'=>1,
+						'openId'=>$session->get('open_id'),
+					);
 				}
 				$em->getConnection()->commit();
 			}
