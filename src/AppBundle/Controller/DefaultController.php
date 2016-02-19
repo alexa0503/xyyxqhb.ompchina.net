@@ -54,6 +54,7 @@ class DefaultController extends Controller
 	{
 		$date_time = $this->date_time;
 		$config = $this->config;
+		$timestamp = time();
 		foreach ($config as $key => $value) {
 			if(strtotime(date('Y-m-d ').$value[0]) <= $timestamp && strtotime(date('Y-m-d ').$value[1]) > $timestamp){
 				$i = $key;
