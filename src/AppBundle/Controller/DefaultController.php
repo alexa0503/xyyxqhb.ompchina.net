@@ -63,9 +63,9 @@ class DefaultController extends Controller
 			}
 		}
 		if( null !== $i)
-			$end_time = date('Y-m-d ').$config[$i][0];
+			$end_time = date('Y/m/d ').$config[$i][0];
 		else
-			$end_time = '2016-02-18';
+			$end_time = '2016/02/18';
 		$is_gaming = $i === null ? false : true;
 		$is_end = strtotime($date_time[1]) < $timestamp ? false : true;
 		return $this->render('AppBundle:default:index.html.twig', array(
