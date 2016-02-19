@@ -57,9 +57,13 @@ class OAuthListener
 					$event->setResponse(new RedirectResponse($url));
 				}
 			}
+			$share = array(
+				array('猴年“猴”运气，给你一个手酸却又幸福的机会。','兴业元宵整点红运趴，猴年“猴”运快来抢。'),
+				array('吆吆零吗，天上掉馅饼，场面已经控制不住了','金猴闹元宵，兴业让你新的一年红运滚滚来！'),
+			);
 			$session->set('shareAppid',$this->container->getParameter('wechat_appid'));
-			$session->set('shareTitle','兴业银行');
-			$session->set('shareDesc','兴业银行');
+			$session->set('shareTitle',$share[rand(0,1)][0]);
+			$session->set('shareDesc',$share[rand(0,1)][1]);
 			$session->set('shareLink',$request->getUriForPath('/'));
 			$session->set('shareImg','http://'.$request->getHost().'/bundles/app/default/images/share.jpg');
 		}

@@ -112,6 +112,7 @@ function gameStart(){
 var iClearTime;
 var yaoStep=0;
 var isYaoGet=false;
+var hasRequest = false;
 
 function yaoFn(){
 	clearTimeout(iClearTime);
@@ -140,24 +141,29 @@ function clearYao(){
 function yaoGet(){
 	isYaoGet=true;
 	$('.page3Img1').stop().animate({top:-104},100,'linear').css('background-position','-640px 0');
-	setTimeout(function(){
-		$.getJSON('/lottery',function(json){
-			if(json.ret == 0){
-				if( json.drawNum == 0){
-					goPage6(json.credit);
+
+	if( hasRequest == false ){
+		setTimeout(function(){
+			hasRequest = true;
+			$.getJSON('/lottery',function(json){
+				if(json.ret == 0){
+					if( json.drawNum == 0){
+						goPage6(json.credit);
+					}
+					else{
+						goPage4(json.credit,json.drawNum);
+					}
 				}
-				else{
-					goPage4(json.credit,json.drawNum);
+				else {
+					goPage5();
 				}
-			}
-			else {
-				goPage5();
-			}
-		});
-		//goPage4();//中奖显示浮层 还有机会
-		//goPage5();//未中奖显示浮层
-		//goPage6();//中奖显示浮层 没有机会
-	},1000);
+			});
+			//goPage4();//中奖显示浮层 还有机会
+			//goPage5();//未中奖显示浮层
+			//goPage6();//中奖显示浮层 没有机会
+		},1000);
+	}
+	
 }
 
 function goPage4(redPoint,chanceNo){//中奖显示浮层 还有机会
