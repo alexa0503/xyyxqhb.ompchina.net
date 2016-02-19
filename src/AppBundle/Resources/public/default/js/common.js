@@ -143,8 +143,9 @@ function yaoGet(){
 	$('.page3Img1').stop().animate({top:-104},100,'linear').css('background-position','-640px 0');
 
 	if( hasRequest == false ){
+		hasRequest = true;
 		setTimeout(function(){
-			hasRequest = true;
+
 			$.getJSON('/lottery',function(json){
 				if(json.ret == 0){
 					if( json.drawNum == 0){
